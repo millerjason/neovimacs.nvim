@@ -3,6 +3,7 @@
 ### 0.97
 
 * Undefine unwanted overlapping key bindings
+* Do not set Meta keys by default (improve compatibilty)
 * Update documentation
 
 ### 0.96-nvim1.0

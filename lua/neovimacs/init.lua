@@ -9,8 +9,12 @@ M.options = {
     -- (otherwise we start in vim normal mode)
     VM_StartInsert = 1,
 
+    -- Should meta send escape
+    -- (required for some terminals, incompatible with others)
+    VM_UnixConsoleMetaSendsEsc = 0,
+
     -- Tab Style: emacs, whitespace, startofline
-    TabIndentStyle = "emacs"
+    TabIndentStyle = "emacs",
 }
 
 -- Find plugin root
@@ -25,6 +29,7 @@ M.plugin_root = find_plugin_root()
 function M.set_vim_globals()
     vim.g.VM_Enabled = M.options.VM_Enabled
     vim.g.VM_StartInsert = M.options.VM_StartInsert
+    vim.g.VM_UnixConsoleMetaSendsEsc = M.options.VM_UnixConsoleMetaSendsEsc
     vim.g.TabIndentStyle = M.options.TabIndentStyle
 end
 
@@ -37,9 +42,9 @@ function M.setup(opts)
     vim.cmd("source " .. vimscript_path .. "vimacs.vim")
     vim.cmd("source " .. vimscript_path .. "tab-indent.vim")
     --- Undefine unwanted overlaps
-    vim.api.nvim_set_keymap('i', '<Esc>', '<Esc>', { noremap = true })
-    vim.api.nvim_set_keymap('n', '<C-a>', '<Nop>', { noremap = true })
-    vim.api.nvim_set_keymap('n', '<C-x>', '<Nop>', { noremap = true })
+    vim.api.nvim_set_keymap("i", "<Esc>", "<Esc>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<C-a>", "<Nop>", { noremap = true })
+    vim.api.nvim_set_keymap("n", "<C-x>", "<Nop>", { noremap = true })
 end
 
 return M

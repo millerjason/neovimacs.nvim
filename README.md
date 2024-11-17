@@ -44,6 +44,7 @@ To install the plugin with custom options (lazy example provided):
 
 - **VM_Enabled** (default 1): enabled vimacs (if not set, no modules will be loaded)
 - **VM_StartInsert** (default 1): if set start in emacs insert mode instead of vim normal mode
+  **VM_UnixConsoleMetaSendsEsc** (default 0): also set Meta key (required in certain terminals, requires nvim >= 0.10)
 - **TabIndentStyle**: (default "emacs"): options for "emacs", "whitespace", and "startofline" tab indent behavior
 
 ## Debugging
@@ -73,4 +74,4 @@ your running viamcs in neovim.  Neovim does not allow all bindings to work in al
 supports most of what is possible.
 
 Plus you still get the full power of vim moded editing as well, so vimacs can be used as a module to transition
-you from emacs to vim until you've master the vim bindings.
+you from emacs to vim until you have mastered the vim bindings.
