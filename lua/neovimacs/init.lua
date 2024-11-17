@@ -36,6 +36,10 @@ function M.setup(opts)
     vim.cmd("source " .. vimscript_path .. "insertmode.vim")
     vim.cmd("source " .. vimscript_path .. "vimacs.vim")
     vim.cmd("source " .. vimscript_path .. "tab-indent.vim")
+    --- Undefine unwanted overlaps
+    vim.api.nvim_set_keymap('i', '<Esc>', '<Esc>', { noremap = true })
+    vim.api.nvim_set_keymap('n', '<C-a>', '<Nop>', { noremap = true })
+    vim.api.nvim_set_keymap('n', '<C-x>', '<Nop>', { noremap = true })
 end
 
 return M
