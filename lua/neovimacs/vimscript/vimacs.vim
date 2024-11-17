@@ -11,7 +11,7 @@
 "
 " Original source: https://github.com/andrep/vimacs
 " Neovim modifications: https://github.com/millerjason/neovimacs
-" 
+"
 " Please see the documentation (vimacs.txt) for the README, installation
 " notes, and the ChangeLog.
 "
@@ -21,12 +21,12 @@
 " it under the terms of the GNU General Public License as published by
 " the Free Software Foundation; either version 2 of the License, or
 " (at your option) any later version.
-" 
+"
 " This program is distributed in the hope that it will be useful,
 " but WITHOUT ANY WARRANTY; without even the implied warranty of
 " MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 " GNU General Public License for more details.
-" 
+"
 " You should have received a copy of the GNU General Public License
 " along with this program; if not, write to the Free Software
 " Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -173,7 +173,8 @@ set wildcharm=<Tab>
 "
 
 " Pressing <M-x> sends <Esc>x?  (As Unix terminals often do)
-LetDefault g:VM_UnixConsoleMetaSendsEsc 1
+" Note: disabled for neovim users, set your own bindings
+LetDefault g:VM_UnixConsoleMetaSendsEsc 0
 
 " One or two <Esc>s required to go back to Normal mode?
 LetDefault g:VM_SingleEscToNormal 1
@@ -238,7 +239,7 @@ if has("unix") && !has("gui_running") && g:VM_UnixConsoleMetaSendsEsc
  set <M-^>=^
  " Can't set <M-Space> right now :(
  "set <M-Space>=<Space>
-" 
+"
 endif
 
 
@@ -285,7 +286,7 @@ command! UseF1ForNormal echoerr "Use F1 or <C-z> to return to Normal mode.  :hel
 
 "
 " Insert mode <-> Normal mode <-> Command mode
-" 
+"
 
 inoremap <M-x> <C-o>:
 inoremap <M-:> <C-o>:
@@ -357,7 +358,7 @@ endif
 
 "
 " Error Recovery
-" 
+"
 
 inoremap <C-_> <C-o>u
 inoremap <C-x><C-u> <C-o>u
@@ -448,7 +449,7 @@ function! <SID>AbortSearch()
 endfunction
 
 function! <SID>SearchAgain()
-  
+
   "if (winline() <= 2)
   "  normal zb
   "elseif (( winheight(0) - winline() ) <= 2)
@@ -469,10 +470,10 @@ function! <SID>SearchAgain()
     endif
     execute current_pos
   endif
-  
+
   cnoremap <C-s> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>/<Up>
   cnoremap <C-r> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>?<Up>
-  
+
   if g:VM_SearchRepeatHighlight == 1
     if !exists("s:hls_status")
       let s:hls_status = &hls
@@ -1020,7 +1021,7 @@ endif
 
 "
 " Abbreviations
-" 
+"
 
 inoremap <M-/> <C-p>
 inoremap <C-M-/> <C-x>
@@ -1114,7 +1115,7 @@ endfunction
 " <C-Space> style of marking, where navigational keys do _not_ cancel
 " marking.
 "
-" Note that this doesn't work properly if the user remaps 
+" Note that this doesn't work properly if the user remaps
 
 inoremap <silent> <S-Up>       <C-o>:call <SID>StartShiftSel()<CR><S-Up>
 inoremap <silent> <S-Down>     <C-o>:call <SID>StartShiftSel()<CR><S-Down>
@@ -1213,7 +1214,7 @@ endfunction
 
 "
 " Case Change
-" 
+"
 
 inoremap <M-l> <C-o>gul<C-o>w
 inoremap <M-u> <C-o>gUe<C-o>w
@@ -1364,7 +1365,7 @@ inoremap <C-x><C-x>1q <C-o>zm
 "
 " Enable menus in the console (like GNU Emacs)
 " Thanks to Piet Delport for this great idea!
-" 
+"
 
 LetDefault g:VM_F10Menu 1
 
