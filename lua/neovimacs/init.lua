@@ -2,19 +2,19 @@ local M = {}
 
 -- Default options
 M.options = {
-    -- Enable vimacs
-    VM_Enabled = 1,
+    -- Enable Vimacs
+    VM_Enabled = true,
 
     -- If set, we start in emacs edit mode
     -- (otherwise we start in vim normal mode)
-    VM_StartInsert = 1,
+    VM_StartInsert = true,
 
     -- Should meta send escape
     -- (required for some terminals, incompatible with others)
-    VM_UnixConsoleMetaSendsEsc = 0,
+    VM_UnixConsoleMetaSendsEsc = false,
 
-    -- Tab Style: emacs, whitespace, startofline
-    TabIndentStyle = "emacs",
+    -- Tab Indent Style: none, emacs, whitespace, startofline
+    TabIndentStyle = "none",
 }
 
 -- Find plugin root
@@ -27,9 +27,9 @@ M.plugin_root = find_plugin_root()
 
 -- Set vimscript globals from configuration
 function M.set_vim_globals()
-    vim.g.VM_Enabled = M.options.VM_Enabled
-    vim.g.VM_StartInsert = M.options.VM_StartInsert
-    vim.g.VM_UnixConsoleMetaSendsEsc = M.options.VM_UnixConsoleMetaSendsEsc
+    vim.g.VM_Enabled = M.options.VM_Enabled and 1 or 0
+    vim.g.VM_StartInsert = M.options.VM_StartInsert and 1 or 0
+    vim.g.VM_UnixConsoleMetaSendsEsc = M.options.VM_UnixConsoleMetaSendsEsc and 1 or 0
     vim.g.TabIndentStyle = M.options.TabIndentStyle
 end
 
