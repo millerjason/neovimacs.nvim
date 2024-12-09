@@ -7,7 +7,9 @@ endif
 
 " insertmode equivalent (see :h insertmode) in neovim
 "
-autocmd BufWinEnter * startinsert
+if !exists("g:VM_StartInsert") || g:VM_StartInsert == 1
+  autocmd BufWinEnter * startinsert
+endif
 inoremap <Esc> <C-X><C-Z><C-]>
 inoremap <C-C> <C-X><C-Z>
 inoremap <C-L> <C-X><C-Z><C-]><Esc>

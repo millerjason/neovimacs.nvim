@@ -31,19 +31,18 @@ To install the plugin with custom options (lazy example provided):
 ```lua
 {
    "millerjason/neovimacs.nvim",
-   config = function()
-        require("neovimacs").setup({
-            VM_Enabled = 1,
-            VM_StartInsert = 0,
-        })
-   end,
+   opts = {
+     VM_Enabled = true,
+     VM_StartInsert = false, -- Start in normal (not insert) mode
+   },
 }
 ```
 
 ## ✨ Options
 
-- **VM_Enabled** (default 1): enabled vimacs (if not set, no modules will be loaded)
-- **VM_StartInsert** (default 1): if set start in emacs insert mode instead of vim normal mode
+- **VM_Enabled** (default true): enabled vimacs (if not set, no modules will be loaded)
+- **VM_StartInsert** (default true): if set start in emacs insert mode instead of vim normal mode
+  **VM_UnixConsoleMetaSendsEsc** (default false): also set Meta key (required in certain terminals, requires nvim >= 0.10)
 - **TabIndentStyle**: (default "emacs"): options for "emacs", "whitespace", and "startofline" tab indent behavior
 
 ## Debugging
@@ -69,8 +68,8 @@ nvim commands to help you track down key bindings and conflicts:
 ## 🚀 Usage
 
 Many of the emacs control and meta keys (movement, kill buffers, file operations, marking) will work while
-your running viamcs in neovim.  Neovim does not allow all bindings to work in all modes, although this module
+you're running vimacs in neovim.  Neovim does not allow all bindings to work in all modes, although this module
 supports most of what is possible.
 
 Plus you still get the full power of vim moded editing as well, so vimacs can be used as a module to transition
-you from emacs to vim until you've master the vim bindings.
+you from emacs to vim until you have mastered the vim bindings.

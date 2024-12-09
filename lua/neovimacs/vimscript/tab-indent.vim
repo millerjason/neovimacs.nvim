@@ -18,7 +18,7 @@ if exists("loaded_TabIndent")
   finish
 endif
 
-if !exists("g:TabIndentStyle") || g:TabIndentStyle == 0
+if !exists("g:TabIndentStyle") || g:TabIndentStyle == 0 || g:TabIndentStyle == "none"
   " A user should explicitly enable tab-indent style
   finish
 endif
@@ -48,18 +48,18 @@ function! <SID>TabOrIndent()
 
     elseif g:TabIndentStyle == 2 || g:TabIndentStyle == "whitespace"
       if virtcol('.') <= indent(line('.'))
-    return indent 
+    return indent
       else
     return real_tab
       endif
 
     elseif g:TabIndentStyle == 3 || g:TabIndentStyle == "startofline"
       if virtcol('.') <= indent(line('.')) || virtcol('.') == 1
-    return indent 
+    return indent
       else
     return real_tab
       endif
-      
+
     endif
 
   else
