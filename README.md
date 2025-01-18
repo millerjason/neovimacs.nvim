@@ -22,9 +22,10 @@ stty -ixon -ixoff
    "millerjason/neovimacs.nvim",
 }
 ```
+
 3. Enjoy modeless editing throughout neovim
 
-## ⚙️  Configuration
+## ⚙️ Configuration
 
 To install the plugin with custom options (lazy example provided):
 
@@ -68,7 +69,7 @@ nvim commands to help you track down key bindings and conflicts:
 ## 🚀 Usage
 
 Many of the emacs control and meta keys (movement, kill buffers, file operations, marking) will work while
-you're running vimacs in neovim.  Neovim does not allow all bindings to work in all modes, although this module
+you're running vimacs in neovim. Neovim does not allow all bindings to work in all modes, although this module
 supports most of what is possible.
 
 Plus you still get the full power of vim moded editing as well, so vimacs can be used as a module to transition
