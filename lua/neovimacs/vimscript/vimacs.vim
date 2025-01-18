@@ -408,8 +408,8 @@ function! <SID>StartSearch(search_dir)
   set incsearch
   set lazyredraw
   cmap <C-c> <CR>
-  cnoremap <C-s> <C-c><C-o>:call <SID>SearchAgain()<CR><C-o>/<Up>
-  cnoremap <C-r> <C-c><C-o>:call <SID>SearchAgain()<CR><C-o>?<Up>
+  cnoremap <C-s> <C-c><C-o>:call <SID>SearchAgain()<CR><C-o>/<Up><CR>
+  cnoremap <C-r> <C-c><C-o>:call <SID>SearchAgain()<CR><C-o>?<Up><CR>
   cnoremap <silent> <CR> <CR><C-o>:call <SID>StopSearch()<CR>
   cnoremap <silent> <C-g> <C-c><C-o>:call <SID>AbortSearch()<CR>
   cnoremap <silent> <Esc> <C-c><C-o>:call <SID>AbortSearch()<CR>
@@ -471,8 +471,8 @@ function! <SID>SearchAgain()
     execute current_pos
   endif
 
-  cnoremap <C-s> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>/<Up>
-  cnoremap <C-r> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>?<Up>
+  cnoremap <C-s> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>/<Up><CR>
+  cnoremap <C-r> <CR><C-o>:call <SID>SearchAgain()<CR><C-o>?<Up><CR>
 
   if g:VM_SearchRepeatHighlight == 1
     if !exists("s:hls_status")
@@ -1179,11 +1179,11 @@ command! ScrollOtherWindow silent! execute "normal! \<C-w>w\<PageDown>\<C-w>W"
 " Formatting
 "
 
-inoremap <silent> <M-=> <C-o>:call <SID>IndentParagraph()<CR>
-inoremap <silent> <M-q> <C-o>:call <SID>FillParagraph()<CR>
-inoremap <script> <C-o> <CR><Left>
-inoremap <C-M-o> <C-o>:echoerr "<C-M-o> not supported yet; sorry!"<CR>
-inoremap <C-x><C-o> <C-o>:call <SID>DeleteBlankLines()<CR>
+"inoremap <silent> <M-=> <C-o>:call <SID>IndentParagraph()<CR>
+"inoremap <silent> <M-q> <C-o>:call <SID>FillParagraph()<CR>
+" inoremap <script> <C-o> <CR><Left>
+" inoremap <C-M-o> <C-o>:echoerr "<C-M-o> not supported yet; sorry!"<CR>
+"inoremap <C-x><C-o> <C-o>:call <SID>DeleteBlankLines()<CR>
 " Try GoZ<Esc>:g/^$/.,/./-j<CR>Gdd
 inoremap <M-^> <Up><End><C-o>J
 vnoremap <C-M-\> =
