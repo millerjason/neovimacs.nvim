@@ -432,6 +432,10 @@ function! <SID>StopSearch()
     let &incsearch = s:incsearch_status
     unlet s:incsearch_status
   endif
+  if exists("s:lazyredraw_status")
+    let &lazyredraw = s:lazyredraw_status
+    unlet s:lazyredraw_status
+  endif
   if g:VM_SearchRepeatHighlight == 1
     if exists("s:hls_status")
       let &hls = s:hls_status
