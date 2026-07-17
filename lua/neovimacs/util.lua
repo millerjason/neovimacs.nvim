@@ -17,4 +17,22 @@
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 -- General Public License (in the LICENSE file) for more details.
 
-require("neovimacs")
+-- Small shared helpers.
+local M = {}
+
+-- Feed keys (noremap, untyped) into the input queue.
+function M.feed(keys)
+    vim.api.nvim_feedkeys(vim.keycode(keys), "n", false)
+end
+
+-- Cursor position as (row, col): 1-based row, 0-based byte column.
+function M.cursor()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    return pos[1], pos[2]
+end
+
+function M.echo(msg)
+    vim.api.nvim_echo({ { msg } }, false, {})
+end
+
+return M
