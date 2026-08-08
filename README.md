@@ -2,8 +2,12 @@
 
 **Neovimacs** is vimacs for the neovim age.
 
-This project ports the original vimacs scripts (emacs key emulation for vim) to neovim,
-along with some simplifications to the setup.
+This project is a pure-lua rewrite of the original vimacs scripts (emacs key
+emulation for vim), rebuilt on neovim APIs (`vim.keymap`, `vim.on_key`,
+buffer APIs, native incsearch). Requires **neovim 0.10+** (tested on 0.12).
+
+See [MAPPINGS.md](MAPPINGS.md) for the full keybinding reference and notes
+on what changed relative to the original vimscript implementation.
 
 ## 📦 Installation
 
@@ -20,6 +24,7 @@ stty -ixon -ixoff
 ```lua
 {
    "millerjason/neovimacs.nvim",
+   opts = {},
 }
 ```
 
@@ -41,10 +46,24 @@ To install the plugin with custom options (lazy example provided):
 
 ## ✨ Options
 
-- **VM_Enabled** (default true): enabled vimacs (if not set, no modules will be loaded)
-- **VM_StartInsert** (default true): if set start in emacs insert mode instead of vim normal mode
-  **VM_UnixConsoleMetaSendsEsc** (default false): also set Meta key (required in certain terminals, requires nvim >= 0.10)
-- **TabIndentStyle**: (default "emacs"): options for "emacs", "whitespace", and "startofline" tab indent behavior
+- **VM_Enabled** (default true): enable vimacs (if false, nothing is loaded)
+- **VM_StartInsert** (default true): if set, start in emacs insert mode instead of vim normal mode
+- **VM_Hidden** (default true): emacs-style hidden buffers; `C-x C-f` uses `:hide edit`
+- **VM_NormalMetaXRemap** (default true): map `M-x` to `:` in normal mode too
+- **VM_KillRingMax** (default 30): number of kills remembered for `C-y` / `M-y`
+- **VM_F10Menu** (default false): load the console menu and bind `F10` to `:emenu`
+- **TabIndentStyle** (default "none"): "emacs", "whitespace", or "startofline" tab indent behavior
+
+Removed: **VM_UnixConsoleMetaSendsEsc** — neovim receives Meta natively, so
+the termcap workaround this enabled no longer exists (setting it shows a
+warning and is ignored). Configure your terminal to send proper Meta/Alt
+key codes instead.
+
+## 🧪 Tests
+
+```bash
+nvim --clean --headless -l tests/smoke.lua
+```
 
 ## Debugging
 
